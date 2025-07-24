@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Print(twoSum([]int{2, 7, 11, 15}, 9))
-	fmt.Print(twoSum([]int{3, 2, 4}, 6))
+	fmt.Println(twoSum([]int{2, 7, 11, 15}, 9))
+	fmt.Println(twoSum([]int{3, 2, 4}, 6))
 }
 
 func twoSum(nums []int, target int) []int {
@@ -20,14 +20,28 @@ func twoSum(nums []int, target int) []int {
 	// 	}
 	// }
 	// return result
+	///--> new version
+	// mp := make(map[int]int)
+	// for i, val := range nums {
+	// 	if j, ok := mp[target-val]; ok {
+	// 		return []int{i, j}
+	// 	} else {
+	// 		mp[val] = i
+	// 	}
+	// }
+	// return []int{}
+	// --> new version
 	mp := make(map[int]int)
-	for i, val := range nums {
-		if j, ok := mp[target-val]; ok {
-			return []int{i, j}
-		} else {
-			mp[val] = i
+
+	for i, v := range nums {
+		sum := target - v
+
+		if val, ok := mp[sum]; ok {
+			return []int{i, val}
 		}
+		mp[v] = i
 	}
+
 	return []int{}
 
 }

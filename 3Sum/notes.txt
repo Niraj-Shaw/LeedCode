@@ -1,0 +1,17 @@
+Nums 
+
+For each of value
+
+We have to check the two sum
+
+If two sum + value = 0, we add it to array
+
+Constrains -
+
+Sort it
+
+if the value is more than 0 , we dont need to continue
+
+
+
+

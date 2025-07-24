@@ -6,65 +6,60 @@ import (
 )
 
 func main() {
-	nums := []int{-1, -7, 1, 8, 16, -2}
+	nums := []int{0, 0, 0, 0}
 	result := threeSum(nums)
-	for _, array := range result {
-		for _, val := range array {
-			fmt.Printf("%d ", val)
-		}
-		println()
-	}
+	fmt.Printf("%v", result)
 }
 
-func twoSum(nums []int, result [][]int, start int, firstInt int) [][]int {
+// func twoSum(nums []int, result [][]int, start int, firstInt int) [][]int {
 
-	end := len(nums) - 1
-	remainder := -firstInt
-	for j := start; j < len(nums); j++ {
+// 	end := len(nums) - 1
+// 	remainder := -firstInt
+// 	for j := start; j < len(nums); j++ {
 
-	}
-	for start < end {
-		if (nums[start] + nums[end]) > remainder {
-			end--
-		} else if (nums[start] + nums[end]) < remainder {
+// 	}
+// 	for start < end {
+// 		if (nums[start] + nums[end]) > remainder {
+// 			end--
+// 		} else if (nums[start] + nums[end]) < remainder {
 
-			start++
-		} else {
-			//myarr := []int{}
-			myarr := append([]int{}, firstInt, nums[start], nums[end])
-			result = append(result, myarr)
-			start++
-			for nums[start-1] == nums[start] && start < end {
-				start++
-			}
-		}
-	}
-	return result
+// 			start++
+// 		} else {
+// 			//myarr := []int{}
+// 			myarr := append([]int{}, firstInt, nums[start], nums[end])
+// 			result = append(result, myarr)
+// 			start++
+// 			for nums[start-1] == nums[start] && start < end {
+// 				start++
+// 			}
+// 		}
+// 	}
+// 	return result
 
-}
+// }
 
-func threeSum(nums []int) [][]int {
+// func threeSum(nums []int) [][]int {
 
-	//myMap := map[int]int{
-	//		nums[0]: 0,
-	//	}
-	result := [][]int{}
-	sort.Ints(nums)
-	for i := 0; i < len(nums); i++ {
-		if nums[i] > 0 {
-			break
-		}
-		if (i != 0) && (nums[i] == nums[i-1]) {
-			continue
-		}
-		start := i + 1
+// 	//myMap := map[int]int{
+// 	//		nums[0]: 0,
+// 	//	}
+// 	result := [][]int{}
+// 	sort.Ints(nums)
+// 	for i := 0; i < len(nums); i++ {
+// 		if nums[i] > 0 {
+// 			break
+// 		}
+// 		if (i != 0) && (nums[i] == nums[i-1]) {
+// 			continue
+// 		}
+// 		start := i + 1
 
-		//	first := nums[i
-		result = twoSum(nums, result, start, nums[i])
+// 		//	first := nums[i
+// 		result = twoSum(nums, result, start, nums[i])
 
-	}
-	return result
-}
+// 	}
+// 	return result
+// }
 
 // func threeSum(nums []int) [][]int {
 // 	result := [][]int{}
@@ -104,3 +99,54 @@ func threeSum(nums []int) [][]int {
 // 	return result
 
 // }
+
+func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
+
+	mp := make(map[int]int)
+
+	result := [][]int{}
+	prev := -1
+
+	for i := range nums {
+		mp[nums[i]] = i
+	}
+
+	for i, v := range nums {
+		if v > 0 {
+			return result
+		}
+
+		if (i == 0 || nums[i] != prev) && i+2 < len(nums) {
+			items := findTwoSum(nums, mp, i)
+			if len(items) != 0 {
+				result = append(result, items...)
+			}
+			prev = nums[i]
+		}
+	}
+
+	return result
+}
+
+func findTwoSum(nums []int, mp map[int]int, index int) [][]int {
+	result := [][]int{}
+	target := -nums[index]
+
+	for i := index + 1; i < len(nums); i++ {
+		v := nums[i]
+		sum := target - v
+
+		if idx, ok := mp[sum]; ok && idx > i {
+			result = append(result, []int{v, sum, nums[index]})
+
+		}
+
+		for i+1 < len(nums) && nums[i] == nums[i+1] {
+			i++
+		}
+
+	}
+
+	return result
+}

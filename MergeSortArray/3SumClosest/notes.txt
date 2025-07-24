@@ -1,0 +1,16 @@
+array = 
+
+target =
+
+we have to find 3 sum which is closest to a target
+
+sort the array,
+
+for each value, we have to find the sum of the sum
+
+we have to compare the distance from the target with that of current closest.
+if less then update current closest.
+
+example -
+
+-4, -1, 1, 2

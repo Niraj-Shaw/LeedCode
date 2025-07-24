@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	//fmt.Print(groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
-	fmt.Print(groupAnagrams([]string{"bdddddddddd", "bbbbbbbbbbc"}))
+	fmt.Print(groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
+	//fmt.Print(groupAnagrams([]string{"bdddddddddd", "bbbbbbbbbbc"}))
 }
 
 func groupAnagrams(strs []string) [][]string {
