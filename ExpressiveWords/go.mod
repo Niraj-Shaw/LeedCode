@@ -1,0 +1,3 @@
+module expressiveWords
+
+go 1.23.3
