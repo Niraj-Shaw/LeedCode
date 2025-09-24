@@ -46,29 +46,57 @@ func (t *tree) traverse(node *TreeNode) {
 
 }*/
 
+// func postorderTraversal(root *tree.TreeNode) []int {
+// 	res := []int{}
+// 	stack := []*tree.TreeNode{}
+// 	curr := root
+// 	var PrevNode *tree.TreeNode
+// 	for curr != nil || len(stack) != 0 {
+// 		if curr != nil {
+// 			stack = append(stack, curr)
+// 			curr = curr.Left
+
+// 		} else {
+// 			curr = stack[len(stack)-1]
+// 			if curr.Right != nil && curr.Right != PrevNode {
+// 				curr = curr.Right
+// 			} else {
+// 				res = append(res, curr.Val)
+// 				PrevNode = curr
+// 				stack = stack[:len(stack)-1]
+// 				curr = nil
+// 			}
+
+// 		}
+// 	}
+// 	return res
+
+// }
+
 func postorderTraversal(root *tree.TreeNode) []int {
-	res := []int{}
+	result := []int{}
 	stack := []*tree.TreeNode{}
 	curr := root
-	var PrevNode *tree.TreeNode
+	var prev *tree.TreeNode
+
 	for curr != nil || len(stack) != 0 {
-		if curr != nil {
+		for curr != nil {
 			stack = append(stack, curr)
 			curr = curr.Left
-
-		} else {
-			curr = stack[len(stack)-1]
-			if curr.Right != nil && curr.Right != PrevNode {
-				curr = curr.Right
-			} else {
-				res = append(res, curr.Val)
-				PrevNode = curr
-				stack = stack[:len(stack)-1]
-				curr = nil
-			}
-
 		}
-	}
-	return res
 
+		curr = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if curr != nil && curr.Right != nil && curr.Right != prev {
+			stack = append(stack, curr)
+			continue
+		}
+
+		result = append(result, curr.Val)
+		prev = curr
+
+	}
+
+	return result
 }

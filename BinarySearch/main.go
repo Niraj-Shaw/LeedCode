@@ -15,7 +15,7 @@ func binarySearch(nums []int, num int) bool {
 	lo := 0
 	hi := len(nums) - 1
 
-	for lo < hi {
+	for lo <= hi {
 		mid := (hi + lo) / 2
 
 		if nums[mid] == num {

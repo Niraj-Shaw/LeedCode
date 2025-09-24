@@ -23,24 +23,47 @@ func doQuickSort(array []int, start, end int) {
 }
 
 func doPartion(array []int, start, end int) int {
-	pivotIndex, pivot := end, array[end]
-	end--
-	for start < end {
-		for array[start] < pivot {
-			start++
-		}
-		for end >= 0 && array[end] > pivot {
-			end--
-		}
-		if start < end {
-			array[start], array[end] = array[end], array[start]
+	// pivotIndex, pivot := end, array[end]
+	// end--
+	// for start < end {
+	// 	for array[start] < pivot {
+	// 		start++
+	// 	}
+	// 	for end >= 0 && array[end] > pivot {
+	// 		end--
+	// 	}
+	// 	if start < end {
+	// 		array[start], array[end] = array[end], array[start]
+	// 		start++
+	// 	}
+
+	// }
+	// if array[start] > pivot {
+	// 	array[start], array[pivotIndex] = array[pivotIndex], array[start]
+	// }
+	// return start
+
+	pIndex, pValue := end, array[end]
+
+	for start < end{
+		for array[start] < pValue{
 			start++
 		}
 
+		for array[end] > pValue{
+			end++
+		}
+
+		if start < end{
+			array[start], array[end] = array[end], array[start]
+			start++
+		}
 	}
-	if array[start] > pivot {
-		array[start], array[pivotIndex] = array[pivotIndex], array[start]
+
+	if array[start] > pValue{
+		array[start], array[pIndex] = array[pIndex], array[start]
 	}
+
 	return start
 
 }

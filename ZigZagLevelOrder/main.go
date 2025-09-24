@@ -9,18 +9,18 @@ type TreeNode struct {
 }
 
 func main() {
-	node5 := &TreeNode{5, nil, nil}
-	node4 := &TreeNode{4, nil, nil}
-	node3 := &TreeNode{3, nil, node5}
-	node2 := &TreeNode{2, node4, nil}
-	node1 := &TreeNode{1, node2, node3}
+	node5 := &TreeNode{7, nil, nil}
+	node4 := &TreeNode{15, nil, nil}
+	node3 := &TreeNode{20, node4, node5}
+	node2 := &TreeNode{9, nil, nil}
+	node1 := &TreeNode{3, node2, node3}
 	//node1 := &TreeNode{1, nil, nil}
 	fmt.Printf("%v", zigzagLevelOrder(node1))
 
 }
 
 func zigzagLevelOrder(root *TreeNode) [][]int {
-	if root == nil{
+	if root == nil {
 		return nil
 	}
 	result := [][]int{}
